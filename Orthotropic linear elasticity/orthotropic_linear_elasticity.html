@@ -14650,7 +14650,7 @@ Only the top-right quarter of the plate will be considered. Loading will consist
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">L</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.1</span>
@@ -14658,7 +14658,7 @@ Only the top-right quarter of the plate will be considered. Loading will consist
 
 
 <span class="n">SHOW_PYVISTA</span> <span class="o">=</span> <span class="kc">False</span><span class="p">;</span>
-<span class="c1"># SHOW_PYVISTA = True;</span>
+<span class="n">SHOW_PYVISTA</span> <span class="o">=</span> <span class="kc">True</span><span class="p">;</span>
 
 <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">();</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="p">();</span>
@@ -14747,17 +14747,29 @@ Info    : [ 20%] Meshing curve 2 (Line)
 Info    : [ 40%] Meshing curve 3 (Line)
 Info    : [ 60%] Meshing curve 4 (Line)
 Info    : [ 80%] Meshing curve 5 (Circle)
-Info    : Done meshing 1D (Wall 0.00439105s, CPU 0.004977s)
+Info    : Done meshing 1D (Wall 0.0101489s, CPU 0.00869s)
 Info    : Meshing 2D...
 Info    : Meshing surface 1 (Plane, Frontal-Delaunay for Quads)
-Info    : Done meshing 2D (Wall 0.0510802s, CPU 0.043765s)
+Info    : Done meshing 2D (Wall 0.0591647s, CPU 0.059328s)
 Info    : 1034 nodes 2070 elements
 Info    : Recombining 2D mesh...
 Info    : Blossom: 2836 internal 129 closed
-Info    : Blossom recombination completed (Wall 0.0189544s, CPU 0.010118s): 961 quads, 0 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.874401, min Q = 0.42561
-Info    : Done recombining 2D mesh (Wall 0.0191052s, CPU 0.010321s)
+Info    : Blossom recombination completed (Wall 0.0186698s, CPU 0.018725s): 961 quads, 0 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.874401, min Q = 0.42561
+Info    : Done recombining 2D mesh (Wall 0.018831s, CPU 0.018954s)
 </pre>
 </div>
+</div>
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>ViewInteractiveWidget(height=768, layout=Layout(height=&#39;auto&#39;, width=&#39;100%&#39;), width=1024)</pre>
+</div>
+
 </div>
 
 </div>
