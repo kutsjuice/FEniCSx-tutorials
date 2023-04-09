@@ -14611,7 +14611,7 @@ Only the top-right quarter of the plate will be considered. Loading will consist
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14640,7 +14640,8 @@ Only the top-right quarter of the plate will be considered. Loading will consist
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To generate the perforated domain we use here the mshr module and define the boolean “minus” operation between a rectangle and a circle:</p>
+<p>Generation of domain is performed using gmsh. 
+At first we generate points, than lines and circle arc between them, then they are conecting into curve loop, which is use to generate cloe plane.</p>
 
 </div>
 </div>
@@ -14650,7 +14651,7 @@ Only the top-right quarter of the plate will be considered. Loading will consist
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[70]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">L</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.1</span>
@@ -14692,8 +14693,8 @@ Only the top-right quarter of the plate will be considered. Loading will consist
     <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">"Mesh.Algorithm"</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
 
     <span class="c1"># Generate the mesh</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">getEntities</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mf">0.05</span><span class="p">);</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">set_size</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p5</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p6</span><span class="p">)],</span> <span class="mf">0.01</span><span class="p">);</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">getEntities</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">);</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">set_size</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p5</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p6</span><span class="p">)],</span> <span class="mf">0.005</span><span class="p">);</span>
     <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
     <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">recombine</span><span class="p">();</span>
 
@@ -14747,15 +14748,15 @@ Info    : [ 20%] Meshing curve 2 (Line)
 Info    : [ 40%] Meshing curve 3 (Line)
 Info    : [ 60%] Meshing curve 4 (Line)
 Info    : [ 80%] Meshing curve 5 (Circle)
-Info    : Done meshing 1D (Wall 0.0101489s, CPU 0.00869s)
+Info    : Done meshing 1D (Wall 0.00780919s, CPU 0.007523s)
 Info    : Meshing 2D...
 Info    : Meshing surface 1 (Plane, Frontal-Delaunay for Quads)
-Info    : Done meshing 2D (Wall 0.0591647s, CPU 0.059328s)
-Info    : 1034 nodes 2070 elements
+Info    : Done meshing 2D (Wall 0.037712s, CPU 0.037736s)
+Info    : 601 nodes 1204 elements
 Info    : Recombining 2D mesh...
-Info    : Blossom: 2836 internal 129 closed
-Info    : Blossom recombination completed (Wall 0.0186698s, CPU 0.018725s): 961 quads, 0 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.874401, min Q = 0.42561
-Info    : Done recombining 2D mesh (Wall 0.018831s, CPU 0.018954s)
+Info    : Blossom: 1577 internal 109 closed
+Info    : Blossom recombination completed (Wall 0.018952s, CPU 0.018992s): 540 quads, 0 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.819975, min Q = 0.495836
+Info    : Done recombining 2D mesh (Wall 0.0191431s, CPU 0.019228s)
 </pre>
 </div>
 </div>
@@ -14776,17 +14777,33 @@ Info    : Done recombining 2D mesh (Wall 0.018831s, CPU 0.018954s)
 
 </div>
 
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Constitutive-relation">Constitutive relation<a class="anchor-link" href="#Constitutive-relation">&#182;</a></h2><p>Constitutive relations will be defined using an engineering (or Voigt) notation (i.e. second order tensors will be written as a vector of their components) contrary to the 2D linear elasticity example which used an intrinsic notation. In the material frame, which is assumed to coincide here with the global ($Oxy$) frame, the orthotropic constitutive law writes $\mathbf{\varepsilon}=\mathbf{S\sigma}$ using the compliance matrix $\mathbf{S}$ with:</p>
+<p>with $E_x$, $E_y$ the two Young’s moduli in the orthotropy directions, $\nu_{xy}$ the in-plane Poisson ration (with the following relation ensuring the constitutive relation symmetry $(\nu_{yx}=\nu_{xy}E_y/E_x)$ and $G_{xy}$ being the shear modulus. This relation needs to be inverted to obtain the stress components as a function of the strain components $\mathbf{\sigma}=\mathbf{C\varepsilon}$ with $\mathbf{C}=\mathbf{S}^{−1}$:</p>
+
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[71]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">nuxy</span><span class="p">,</span> <span class="n">Gxy</span> <span class="o">=</span> <span class="mf">100.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">5.</span><span class="p">;</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">as_matrix</span><span class="p">([[</span><span class="mf">1.</span><span class="o">/</span><span class="n">Ex</span><span class="p">,</span><span class="o">-</span><span class="n">nuxy</span><span class="o">/</span><span class="n">Ex</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="o">-</span><span class="n">nuxy</span><span class="o">/</span><span class="n">Ex</span><span class="p">,</span><span class="mf">1.</span><span class="o">/</span><span class="n">Ey</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="o">/</span><span class="n">Gxy</span><span class="p">]])</span>
-<span class="n">C</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">([[</span>   <span class="mf">1.</span><span class="o">/</span><span class="n">Ex</span><span class="p">,</span> <span class="o">-</span><span class="n">nuxy</span><span class="o">/</span><span class="n">Ex</span><span class="p">,</span>     <span class="mf">0.</span><span class="p">],</span>
+                   <span class="p">[</span><span class="o">-</span><span class="n">nuxy</span><span class="o">/</span><span class="n">Ex</span><span class="p">,</span>    <span class="mf">1.</span><span class="o">/</span><span class="n">Ey</span><span class="p">,</span>     <span class="mf">0.</span><span class="p">],</span>
+                   <span class="p">[</span>      <span class="mf">0.</span><span class="p">,</span>       <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">Gxy</span><span class="p">]</span>
+                  <span class="p">])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14794,20 +14811,364 @@ Info    : Done recombining 2D mesh (Wall 0.018831s, CPU 0.018954s)
 </div>
 </div>
 
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>Here we used the <code>ufl.inv</code> opertor to compute the elasticity matrix C. We could also have computed analytically the inverse relation. Note that the <code>ufl.inv</code> operator is implemented only up to 3x3 matrices. Extension to the 3D case yields 6x6 matrices and therefore requires either analytical inversion or numerical inversion using <em>Numpy</em> for instance (assuming that the material parameters are constants).</p>
+</blockquote>
+<p>We define different functions for representing the stress and strain either as second-order tensor or using the Voigt engineering notation:</p>
+
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[72]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="p">(</span><span class="s2">"CG"</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">eps</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ufl</span><span class="o">.</span><span class="n">sym</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">));</span>
+
+<span class="k">def</span> <span class="nf">strain2voigt</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="sd">"""e is a 2nd-order tensor, returns its Voigt vectorial representation"""</span>
+    <span class="k">return</span> <span class="n">ufl</span><span class="o">.</span><span class="n">as_vector</span><span class="p">([</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]);</span>
+
+<span class="k">def</span> <span class="nf">voigt2stress</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    s is a stress-like vector (no 2 factor on last component)</span>
+<span class="sd">    returns its tensorial representation</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">ufl</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">([[</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+                          <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+                         <span class="p">]);</span>
+<span class="c1"># notice, that C - is global variable, defined in previous code cell</span>
+<span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">voigt2stress</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">strain2voigt</span><span class="p">(</span><span class="n">eps</span><span class="p">(</span><span class="n">v</span><span class="p">))));</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Problem-position-and-resolution">Problem position and resolution<a class="anchor-link" href="#Problem-position-and-resolution">&#182;</a></h2><p>Different parts of the quarter plate boundaries are now defined as well as the exterior integration measure <code>ds</code>:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[73]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">L</span><span class="p">);</span>
+
+<span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.</span><span class="p">);</span>
+
+<span class="k">def</span> <span class="nf">bottom</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="n">fdim</span> <span class="o">=</span> <span class="n">msh</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">dim</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="c1"># find all facets on top, bottom and left boundary</span>
+<span class="n">left_facets</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">locate_entities_boundary</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="n">fdim</span><span class="p">,</span> <span class="n">left</span><span class="p">);</span>
+<span class="n">bottom_facets</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">locate_entities_boundary</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="n">fdim</span><span class="p">,</span> <span class="n">bottom</span><span class="p">);</span>
+<span class="n">top_facets</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">locate_entities_boundary</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="n">fdim</span><span class="p">,</span> <span class="n">top</span><span class="p">);</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To load specific boundaries of the domain (in our case, the top boundary), we need to mark those boundaries. For the purpose of generality in this example, all boundaries are marked.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[74]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">marked_facets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">top_facets</span><span class="p">,</span> 
+                           <span class="n">left_facets</span><span class="p">,</span> 
+                           <span class="n">bottom_facets</span><span class="p">,</span>
+                          <span class="p">]);</span>
+
+<span class="n">markers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">top_facets</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">left_facets</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">bottom_facets</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                    <span class="p">]);</span>
+
+<span class="n">facets_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">marked_facets</span><span class="p">);</span>
+
+<span class="n">facets_tags</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">meshtags</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> 
+                            <span class="n">fdim</span><span class="p">,</span> 
+                            <span class="n">marked_facets</span><span class="p">[</span><span class="n">facets_order</span><span class="p">],</span>
+                            <span class="n">markers</span><span class="p">[</span><span class="n">facets_order</span><span class="p">]);</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="s1">'ds'</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">msh</span><span class="p">,</span> <span class="n">subdomain_data</span><span class="o">=</span><span class="n">facets_tags</span><span class="p">);</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We are now in position to define the variational form which is given as in 2D linear elasticity, the linear form now contains a Neumann term corresponding to a uniform vertical traction $\sigma_\infty$
+ on the top boundary:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[75]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define function space</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">VectorFunctionSpace</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="p">(</span><span class="s2">"CG"</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+
+<span class="c1"># Define variational problem</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">u_</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="c1"># rho = 1</span>
+<span class="c1"># g = 1</span>
+<span class="c1"># f = fem.Constant(msh, ScalarType((0, -rho*g)))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">sigma</span><span class="p">(</span><span class="n">du</span><span class="p">),</span> <span class="n">eps</span><span class="p">(</span><span class="n">u_</span><span class="p">))</span><span class="o">*</span><span class="n">ufl</span><span class="o">.</span><span class="n">dx</span><span class="p">;</span>
+
+<span class="c1"># uniform traction on top boundary</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">));</span>
+<span class="c1"># l = ufl.inner(f, u_) * ufl.dx;</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">u_</span><span class="p">)</span><span class="o">*</span><span class="n">ds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Apply boundary conditions. Symmetric boundary conditions are applied on the <strong>bottom</strong> and <strong>left</strong> boundaries</p>
+<div style="text-align:center">
+  <img src="pics/boundary conditions.png" alt="Problem geometry" width=400 height=400 title="Symmetric boundary conditions">
+  <figcaption><b>Symmetric boundary conditions</b></figcaption>
+</div>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[76]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># apply constrains on the x_dofs of the left boundary</span>
+<span class="n">left_xdofs</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">locate_dofs_topological</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="c1"># since order of x-coordinate is 0</span>
+                                        <span class="n">facets_tags</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> 
+                                        <span class="n">facets_tags</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="c1"># since left facets has mark 2</span>
+<span class="n">bc_l</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">dirichletbc</span><span class="p">(</span><span class="n">ScalarType</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> 
+                       <span class="n">left_xdofs</span><span class="p">,</span>
+                       <span class="n">V</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="c1"># apply constrains on the y_dofs of the bottom boundary</span>
+<span class="n">bottom_ydofs</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">locate_dofs_topological</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># since order of y-coordinate is 1</span>
+                                           <span class="n">facets_tags</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> 
+                                           <span class="n">facets_tags</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1"># since bottom facets has mark 3</span>
+<span class="n">bc_b</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">dirichletbc</span><span class="p">(</span><span class="n">ScalarType</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                       <span class="n">bottom_ydofs</span><span class="p">,</span>
+                       <span class="n">V</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Solve-the-linear-variational-problem">Solve the linear variational problem<a class="anchor-link" href="#Solve-the-linear-variational-problem">&#182;</a></h3><p>As in the previous demos, we assemble the matrix and right hand side vector and use PETSc to solve our variational problem</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[77]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">problem</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">petsc</span><span class="o">.</span><span class="n">LinearProblem</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="p">[</span><span class="n">bc_l</span><span class="p">,</span> <span class="n">bc_b</span><span class="p">],</span> <span class="n">petsc_options</span><span class="o">=</span><span class="p">{</span><span class="s2">"ksp_type"</span><span class="p">:</span> <span class="s2">"preonly"</span><span class="p">,</span> <span class="s2">"pc_type"</span><span class="p">:</span> <span class="s2">"lu"</span><span class="p">})</span>
+<span class="n">uh</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Stress-computation-and-visualization">Stress computation and visualization<a class="anchor-link" href="#Stress-computation-and-visualization">&#182;</a></h1><blockquote>
+<p><strong>TODO!</strong>:</p>
+<p>A discription needs to be added</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[78]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">σxx</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">(</span><span class="n">uh</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">σyy</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">(</span><span class="n">uh</span><span class="p">)[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="n">stress_fspace</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">FunctionSpace</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="p">(</span><span class="s2">"DG"</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="n">σxx_expr</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="n">σxx</span><span class="p">,</span> <span class="n">stress_fspace</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">interpolation_points</span><span class="p">());</span>
+<span class="n">stress_xx</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="n">stress_fspace</span><span class="p">);</span>
+<span class="n">stress_xx</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">σxx_expr</span><span class="p">);</span>
+
+<span class="n">σyy_expr</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">Expression</span><span class="p">(</span><span class="n">σyy</span><span class="p">,</span> <span class="n">stress_fspace</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">interpolation_points</span><span class="p">());</span>
+<span class="n">stress_yy</span> <span class="o">=</span> <span class="n">fem</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="n">stress_fspace</span><span class="p">);</span>
+<span class="n">stress_yy</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">σyy_expr</span><span class="p">);</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pyvista</span><span class="o">.</span><span class="n">start_xvfb</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">dolfinx.plot</span> <span class="kn">import</span> <span class="n">create_vtk_mesh</span>
+
+<span class="c1"># Create plotter and pyvista grid</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">topology</span><span class="p">,</span> <span class="n">cell_types</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">create_vtk_mesh</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">grid1</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">cell_types</span><span class="p">,</span> <span class="n">x1</span><span class="p">);</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x1</span><span class="p">);</span> 
+<span class="n">x2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">L</span><span class="o">*</span><span class="mf">1.5</span><span class="p">;</span>
+<span class="n">grid2</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">cell_types</span><span class="p">,</span> <span class="n">x2</span><span class="p">);</span>
+
+
+<span class="n">grid1</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s2">"σxx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">stress_xx</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">array</span>
+<span class="n">grid1</span><span class="o">.</span><span class="n">set_active_scalars</span><span class="p">(</span><span class="s2">"σxx"</span><span class="p">)</span>
+
+<span class="n">grid2</span><span class="o">.</span><span class="n">cell_data</span><span class="p">[</span><span class="s2">"σyy"</span><span class="p">]</span> <span class="o">=</span> <span class="n">stress_yy</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">array</span>
+<span class="n">grid2</span><span class="o">.</span><span class="n">set_active_scalars</span><span class="p">(</span><span class="s2">"σyy"</span><span class="p">)</span>
+
+
+<span class="n">actor_1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">grid1</span><span class="p">)</span>
+<span class="n">actor_2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">grid2</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">view_xy</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">OFF_SCREEN</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">fig_array</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="sa">f</span><span class="s2">"component.png"</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>ViewInteractiveWidget(height=768, layout=Layout(height=&#39;auto&#39;, width=&#39;100%&#39;), width=1024)</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
